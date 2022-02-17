@@ -16,7 +16,7 @@ Results
     <tbody>
         {% for result in results %}
         <tr>
-            <th rowspan="{{  result.length }}">{{ result.key }}</th>
+            <th rowspan="{{ result.length }}">{{ result.key }}</th>
             {% for value in result.values %}
         <tr>
             <td>{{ value.value }}</td>
