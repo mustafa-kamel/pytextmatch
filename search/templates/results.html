@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}
+Results
+{% endblock %}
+
+{% block content %}
+<h2>Search:</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Key</th>
+            <th>Values</th>
+            <th>Matching Percentage</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for result in results %}
+        <tr>
+            <th rowspan="{{  result.length }}">{{ result.key }}</th>
+            {% for value in result.values %}
+        <tr>
+            <td>{{ value.value }}</td>
+            <td>{{ value.percentage }}</td>
+        </tr>
+        {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
