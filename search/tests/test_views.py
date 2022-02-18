@@ -26,7 +26,8 @@ class TestViews(TestCase):
 
     def test_results_accepts_only_post_has_body(self):
         response = self.client.post(
-            reverse('search:results'), {'query': 'finde me'})
+            reverse('search:results'),
+            {'query': 'SUCCINYL CHOLINE CHLORIDE 500MG'})
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'results.html')
         self.assertTrue('result' in response.context)
