@@ -4,8 +4,8 @@ Results
 {% endblock %}
 
 {% block content %}
-<h2>Search:</h2>
-<table border="1">
+<h2>Results:</h2>
+<table border="1" style="width: 50%; text-align: center; border-collapse: collapse;">
     <thead>
         <tr>
             <th>Key</th>
@@ -14,7 +14,6 @@ Results
         </tr>
     </thead>
     <tbody>
-        {% for result in results %}
         <tr>
             <th rowspan="{{ result.length }}">{{ result.key }}</th>
             {% for value in result.values %}
@@ -24,7 +23,6 @@ Results
         </tr>
         {% endfor %}
         </tr>
-        {% endfor %}
     </tbody>
 </table>
 {% endblock %}
