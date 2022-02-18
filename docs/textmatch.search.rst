@@ -36,6 +36,14 @@ textmatch.search.views module
    :undoc-members:
    :show-inheritance:
 
+textmatch.search.search module
+-----------------------------
+
+.. automodule:: textmatch.search.search
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 
