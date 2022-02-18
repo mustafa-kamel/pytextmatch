@@ -18,6 +18,8 @@ class Search():
 
     def get_values(self):
         value = self.get_value_by_key()
+        if value.isnull().Values:
+            return []
         values_list = process.extract(
             value.Values, self.csv_data.dropna().Values.to_list(),
             scorer=fuzz.ratio)
