@@ -1,5 +1,6 @@
 import os
 import pandas
+from fuzzywuzzy import fuzz, process
 
 
 class Search():
@@ -8,7 +9,8 @@ class Search():
         self.query = query
         with open(
                 os.path.join(os.path.dirname(__file__), 'data.csv'), "r") as f:
-            self.csv_data = pandas.read_csv(f, usecols=['Key', 'Values'])
+            self.csv_data = pandas.read_csv(
+                f, usecols=['Key', 'Values'], skip_blank_lines=True)
 
     def get_value_by_key(self):
         self.csv_data.set_index("Key", inplace=True)
@@ -16,13 +18,16 @@ class Search():
 
     def get_values(self):
         value = self.get_value_by_key()
-        # search value similariteis in csv
-        return [
-            {"value": value.Values, "percentage": "%91"},
-        ]
+        values_list = process.extract(
+            value.Values, self.csv_data.dropna().Values.to_list(),
+            scorer=fuzz.ratio)
+        return values_list
 
     def get_result(self):
-        values = self.get_values()
+        values = []
+        for v in self.get_values():
+            if v[1] < 100:
+                values.append({'value': v[0], 'percentage': v[1]})
         return {
             "key": self.query,
             "values": values,
