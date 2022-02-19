@@ -28,7 +28,7 @@ class Search():
     def get_result(self):
         values = []
         for v in self.get_values():
-            if v[1] < 100:
+            if 50 < v[1] < 100:
                 values.append({'value': v[0], 'percentage': v[1]})
         return {
             "key": self.query,
